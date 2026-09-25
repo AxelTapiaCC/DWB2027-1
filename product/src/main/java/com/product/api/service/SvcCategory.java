@@ -11,5 +11,7 @@ public interface SvcCategory {
 
     public List<Category> getCategories();
 
+
     ResponseEntity<List<Category>> getActiveCategories();
+
 }

@@ -1,6 +1,10 @@
 package com.product.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -8,18 +12,34 @@ import jakarta.persistence.Table;
     Irving Axel Tapia Anrubio
     Alan Vladimir Alonso Sanchez */
 
-@Entity 
-@Table(name="category")
+@Entity
+@Table(name = "category")
 public class Category {
-    @Id 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("category_id")
+    @Column(name = "category_id")
     private Integer category_id;
+
+    @JsonProperty("category")
+    @Column(name = "category")
     private String category;
+
+    @JsonProperty("tag")
+    @Column(name = "tag")
     private String tag;
+
+    @JsonProperty("parent_category_id")
+    @Column(name = "parent_category_id")
     private Integer parent_category_id;
+
+    @JsonProperty("status")
+    @Column(name = "status")
     private Integer status;
 
-    //Constructor vacio para SPRING
-    public Category(){
+    // Constructor vacío para SPRING
+    public Category() {
     }
 
     // Constructor
