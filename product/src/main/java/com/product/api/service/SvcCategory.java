@@ -5,13 +5,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-
-
 public interface SvcCategory {
 
-    public List<Category> getCategories();
-
-
-    ResponseEntity<List<Category>> getActiveCategories();
-
+    public ResponseEntity<List<Category>> getCategories();
+    
 }
