@@ -30,7 +30,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         response.setTimestamp(LocalDateTime.now());
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         response.setError(HttpStatus.INTERNAL_SERVER_ERROR);
-        response.setMessage("Error al acceder a la base de datos");
+        response.setMessage("Error al consultar la base de datos");
         response.setPath(((ServletWebRequest) request).getRequest().getRequestURI().toString());
         return new ResponseEntity<>(response, response.getError());
     }

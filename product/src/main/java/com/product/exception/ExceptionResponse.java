@@ -27,8 +27,6 @@ public class ExceptionResponse {
         this.timestamp = timestamp;
     }
 
-    // Aqui faltan Getters y Setters
-
     public Integer getStatus() {
         return status;
     }
