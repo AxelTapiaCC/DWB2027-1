@@ -14,4 +14,6 @@ public interface RepoCategory extends JpaRepository<Category,Integer>{
     @Query(value = "SELECT * FROM category ORDER BY category", nativeQuery = true)
     List<Category> getCategories();
 
+    Object findByStatusOrderByCategory(int i);
+
 }
