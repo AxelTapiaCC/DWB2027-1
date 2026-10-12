@@ -20,17 +20,17 @@ public interface RepoCategory extends JpaRepository<Category,Integer>{
     @Query(value = "SELECT * FROM category WHERE status = 1 ORDER BY category", nativeQuery = true)
     List<Category> findActive();
 
-    @Query(value = "SELECT * FROM category WHERE parentCategoryId = :parentCategoryId", nativeQuery = true)
+    @Query(value = "SELECT * FROM category WHERE parent_category_id = :parentCategoryId", nativeQuery = true)
     List<Category> findChilds(@Param("parentCategoryId") Integer parentCategoryId);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO category(category, tag, status, parentCategoryId) VALUES (:category, :tag, 1, :parentCategoryId)", nativeQuery = true)
+    @Query(value = "INSERT INTO category(category, tag, status, parent_category_id) VALUES (:category, :tag, 1, :parentCategoryId)", nativeQuery = true)
     void create(@Param("category") String category, @Param("tag") String tag, @Param("parentCategoryId") Integer parentCategoryId);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE category SET category = :category, tag = :tag, parentCategoryId = :parentCategoryId WHERE category_id = :id", nativeQuery = true)
+    @Query(value = "UPDATE category SET category = :category, tag = :tag, parent_category_id = COALESCE(:parentCategoryId, parent_category_id) WHERE category_id = :id", nativeQuery = true)
     void update(@Param("id") Integer id, @Param("category") String category, @Param("tag") String tag, @Param("parentCategoryId") Integer parentCategoryId);
 
     @Modifying
