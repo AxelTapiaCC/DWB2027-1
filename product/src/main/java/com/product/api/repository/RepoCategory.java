@@ -23,6 +23,17 @@ public interface RepoCategory extends JpaRepository<Category,Integer>{
     @Query(value = "SELECT * FROM category WHERE parent_category_id = :parentCategoryId", nativeQuery = true)
     List<Category> findChilds(@Param("parentCategoryId") Integer parentCategoryId);
 
+    @Query(value = "SELECT COUNT(*) > 0 FROM category WHERE parent_category_id = :parentCategoryId AND status = 1", nativeQuery = true)
+    boolean existsActiveChildren(@Param("parentCategoryId") Integer parentCategoryId);
+
+    @Query(value = "SELECT COUNT(*) > 0 FROM category WHERE LOWER(category) = LOWER(:category) "
+        + "AND (:excludeId IS NULL OR category_id <> :excludeId)", nativeQuery = true)
+boolean existsByCategory(@Param("category") String category, @Param("excludeId") Integer excludeId);
+
+@Query(value = "SELECT COUNT(*) > 0 FROM category WHERE LOWER(tag) = LOWER(:tag) "
+        + "AND (:excludeId IS NULL OR category_id <> :excludeId)", nativeQuery = true)
+boolean existsByTag(@Param("tag") String tag, @Param("excludeId") Integer excludeId);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO category(category, tag, status, parent_category_id) VALUES (:category, :tag, 1, :parentCategoryId)", nativeQuery = true)
@@ -43,6 +54,7 @@ public interface RepoCategory extends JpaRepository<Category,Integer>{
     @Query(value = "UPDATE category SET status = 0 WHERE category_id = :id", nativeQuery = true)
     void disable(@Param("id") Integer id);
 
+    
     //Object findByStatusOrderByCategory(int i);
 
 }

@@ -1,17 +1,15 @@
 package com.product.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-// Esta libreria es para los @NotNull y poder asegurar que los valores no sean nulos
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
 
 public class DtoCategoryIn {
     @JsonProperty("category")
-    @NotNull (message = "La categoria es obligatoria")
+    @NotBlank(message = "La categoría es obligatoria")
     private String category;
 
     @JsonProperty("tag")
-    @NotNull (message = "El tag es obligatorio")
+    @NotBlank(message = "El tag es obligatorio")
     private String tag;
 
     @JsonProperty("parentCategoryId")
