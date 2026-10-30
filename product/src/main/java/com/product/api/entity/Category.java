@@ -18,9 +18,9 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("category_id")
+    @JsonProperty("categoryId")
     @Column(name = "category_id")
-    private Integer category_id;
+    private Integer categoryId;
 
     @JsonProperty("category")
     @Column(name = "category")
@@ -30,9 +30,9 @@ public class Category {
     @Column(name = "tag")
     private String tag;
 
-    @JsonProperty("parent_category_id")
+    @JsonProperty("parentCategoryId")
     @Column(name = "parent_category_id")
-    private Integer parent_category_id;
+    private Integer parentCategoryId;
 
     @JsonProperty("status")
     @Column(name = "status")
@@ -46,13 +46,13 @@ public class Category {
     public Category(String category, String tag, Integer parentCategoryId) {
         this.category = category;
         this.tag = tag;
-        this.parent_category_id = parentCategoryId;
+        this.parentCategoryId = parentCategoryId;
         this.status = 1;
     }
 
     // getters y setters
-    public Integer getCategory_id() {
-        return category_id;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
     public String getCategory() {
@@ -64,15 +64,15 @@ public class Category {
     }
 
     public Integer getParentCategoryId() {
-        return parent_category_id;
+        return parentCategoryId;
     }
 
     public Integer getStatus() {
         return status;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public void setCategory(String category) {
@@ -84,7 +84,7 @@ public class Category {
     }
 
     public void setParentCategoryId(Integer parentCategoryId) {
-        this.parent_category_id = parentCategoryId;
+        this.parentCategoryId = parentCategoryId;
     }
 
     public void setStatus(Integer status) {
@@ -93,7 +93,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "{" + category_id + ", \"" + category + "\", \"" + tag + "\", " +
-                (parent_category_id == null ? "null" : parent_category_id) + ", " + status + "}";
+        return "{" + categoryId + ", \"" + category + "\", \"" + tag + "\", " +
+                (parentCategoryId == null ? "null" : parentCategoryId) + ", " + status + "}";
     }
 }
